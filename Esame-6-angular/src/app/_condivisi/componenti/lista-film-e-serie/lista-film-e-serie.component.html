@@ -1,0 +1,18 @@
+
+<div class="contenitore">
+    <a href="javascript:void(0)"  class="card" *ngFor="let item of elementi" (mouseenter)="alMOuseEnter(info, img)" (mouseleave)="alMouseLeave(info, img)">
+          <img [src]="item.path" class="card-img-top" [alt]="item.path" #img>
+          <div class="info" #info>
+            <video [muted]="true" class="card-img-top" #video><!-- Metto la stessa classe dell'immagine così che il video assuma la stessa-->
+              <source src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4">
+            </video>
+            <p class="my-2 text-center titolo">{{item.titolo}} - <small class="text-success">{{item.genere }}</small></p>
+            <button class="riproduci">Riprouci <i class="bi bi-play-fill"></i></button>
+            <button class="preferiti"><i class="bi bi-bookmark"></i></button>
+            <button class="trailer"><i class="bi bi-film"></i></button>
+            <p class="info_varie my-2">{{item.anno}} - {{item.voto}} <i
+                class="bi bi-star-fill"></i></p>
+            <p class="trama">{{item.trama}}</p>
+          </div>
+    </a>
+</div>
