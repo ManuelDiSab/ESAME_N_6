@@ -130,7 +130,7 @@ export class GestioneUtentiComponent implements OnInit {
     
 
 
-    osservatoreUtenti(){
+        osservatoreUtenti(){
         return {
             next:(rit:I_rispostaserver)=>{
                 this.arr_utenti = []
@@ -141,7 +141,7 @@ export class GestioneUtentiComponent implements OnInit {
                         cognome:elem[i].cognome,
                         idUser:elem[i].idUser,
                         idRuolo:elem[i].idRuolo,
-                        ruolo:elem[i].ruolo.ruolo,
+                        ruolo:elem[i].ruolo,
                         n_status:elem[i].status,
                         status:elem[i].nome_status
                     }

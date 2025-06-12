@@ -81,7 +81,9 @@ select:focus {
                 display: flex;
                 justify-content: space-between;
                 color: rgba(255, 255, 255, 0.8);
-
+                h5{
+                    font-size: 1rem;
+                }
                 button {
                     color: rgba(255, 255, 255, 0.8);
                     background-color: transparent;
@@ -128,9 +130,7 @@ select:focus {
                 display: flex;
                 justify-content: space-between;
                 color: rgba(255, 255, 255, 0.8);
-                h5{
-                    font-size: 1rem;
-                }
+
                 button {
                     color: rgba(255, 255, 255, 0.8);
                     background-color: transparent;

@@ -40,7 +40,7 @@
                 </div>
 
                 <!--  In caso la risorsa passata sia una serie  -->
-                <div class="item card schermo-grande" href="javascript:void(0)" [routerLink]="'/serie/'+ movie.idSerie"
+                <div class="item card schermo-grande" href="javascript:void(0)"     
                     #carta *ngIf="!movie.film" (mouseenter)="alMOuseEnter(info, img)"
                     (mouseleave)="alMouseLeave(info, img )">
                     <a href="javascript:void(0)" [routerLink]="'/serie/'+movie.idSerie">

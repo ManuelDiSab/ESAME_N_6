@@ -31,7 +31,7 @@ export class DettaglioSerieComponent implements OnInit {
     generi_secondari: string = ''
     n_stagioni: number[] = [] //Array delle stagioni della serie selezionata
 
-    constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private api: ApiService, public oss: OsservatoriService) {
+    constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private api: ApiService, private utility: UtilityService, private oss: OsservatoriService) {
         this.auth = this.authService.LeggiObsAuth()//Leggo l'auth da localstorage se esiste (sono loggato)
         this.route.paramMap.subscribe((params) => {
             this.id = params.get('id');
@@ -44,6 +44,7 @@ export class DettaglioSerieComponent implements OnInit {
         this.route.paramMap.subscribe((params) => {//Mi sottoscrivo all'activated route cosicchè quando egli cambia, cambi anche la risorsa che voglio visualizzare
             this.id = params.get('id');
             this.serie$.subscribe(this.osservatoreSerie())
+            this.episodi_arr = []
             this.episodi$.subscribe(this.ossEpisodi())
             this.gruppo_serie$.subscribe(this.oss.osservatore_serie(this.arr_serie))
         })
@@ -52,15 +53,39 @@ export class DettaglioSerieComponent implements OnInit {
         }
     }
 
+    setVideo(string: string) {
+        let video = document.getElementById('primo_ep') as HTMLVideoElement
+        console.log('video', video)
+        video.src = string
+        video.style.width = '100%'
+        video.style.height = 'auto'
+        video.requestFullscreen()
+    }
+
     getArrSerie() {
         const i = this.arr_serie.indexOf(this.risorsa!)
-        console.log('arr', i)   
+        console.log('arr', i)
     }
-
-    setVideo(path:string):void{
-        
+    /**
+     * Funzione per aggiungere od elimnare il film dai preferiti
+     * @param item IFilm o ISerie (interface per i film / Interface per le serie tv )
+     * @returns void
+     */
+    preferiti(item: (ISerie | null)) {
+        if (item !== null) {
+            switch (item?.preferito) {
+                case true:
+                    this.utility.TogliDaiPreferiti(item)
+                    item.preferito = false
+                    console.log('preferito')
+                    break;
+                case false:
+                    this.utility.AddPreferiti(item)
+                    item.preferito = true
+                    console.log(' non preferito')
+            }
+        }
     }
-
     //Osservatore serie
     private osservatoreSerie() {
         return {
@@ -78,7 +103,7 @@ export class DettaglioSerieComponent implements OnInit {
                     path: rit.data.path,
                     voto: rit.data.voto,
                     film: false,
-                    preferito:rit.data.preferito
+                    preferito: rit.data.preferito
                 }
                 for (let i = 1; i <= rit.data!.n_stagioni; i++) {//Faccio un for e riempio l'array delle stagioni
                     this.n_stagioni.push(i)

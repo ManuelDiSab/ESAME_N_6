@@ -109,77 +109,88 @@
     <div class="modal-body ">
         <form [formGroup]="form_serie" class="form_gestione gestione_serie">
 
-            <div class="row g-2 mb-3 p-3 mx-1"><!-- TITOLO E REGISTA-->
+            <div class="row g-2 mb-3 p-3 mx-1"><!-- TITOLO -->
                 <div class="col"><!-- #########   TITOLO  ############## -->
                     <label class="form-label" for="titolo" [class.is-invalid]="form_serie.get('titolo')?.invalid &&
-                    (form_serie.get('titolo')?.dirty || form_serie.get('titolo')?.touched)">Titolo</label>
+                    (form_serie.get('titolo')?.touched)">Titolo</label>
                     <input type="text" class="form-control" formControlName="titolo" id="titolo" aria-hidden="flase"
                         [class.is-invalid]="form_serie.get('titolo')?.invalid &&
-                    (form_serie.get('titolo')?.dirty || form_serie.get('titolo')?.touched)">
+                    (form_serie.get('titolo')?.touched)">
+                    <span *ngIf="form_serie.get('titolo')?.hasError('required') && (form_serie.get('titolo')?.touched)"
+                        class="is-invalid">Inserisci un titolo valido
+                    </span>
                 </div>
             </div>
 
             <div class="row g-2 mb-3 p-3 mx-1"><!-- GENERI E STAGIONI  -->
                 <div class="col"><!-- ######## GENERE PRINCIPALE ########## -->
                     <label class="form-label" for="genere" [class.is-invalid]="form_serie.get('genere')?.invalid &&
-                    (form_serie.get('genere')?.dirty || form_serie.get('genere')?.touched)">Genere</label>
+                    (form_serie.get('genere')?.touched)">Genere</label>
                     <ng-select formControlName="genere" id="genere" class="custom select-gen" [class.is-invalid]="form_serie.get('genere')?.invalid &&
-                    (form_serie.get('genere')?.dirty || form_serie.get('genere')?.touched)">
+                    (form_serie.get('genere')?.touched)">
                         <ng-option *ngFor="let genere of arr_generi"
                             [value]="genere.idGenere">{{genere.nome}}</ng-option>
                     </ng-select>
+                    <span *ngIf="form_serie.get('genere')?.hasError('required') && (form_serie.get('genere')?.touched)"
+                        class="is-invalid">Campo richiesto
+                    </span>
                 </div>
                 <div class="col col-lg-6"><!-- ######## NUMERO DI STAGIONI ########-->
                     <label class="form-label" for="stagioni" [class.is-invalid]="form_serie.get('stagioni')?.invalid &&
-                    (form_serie.get('stagioni')?.dirty || form_serie.get('stagioni')?.touched)">Stagioni</label>
+                    (form_serie.get('stagioni')?.touched)">Stagioni</label>
                     <input type="text" class="form-control" formControlName="stagioni" id="stagioni" [class.is-invalid]="form_serie.get('stagioni')?.invalid &&
-                    (form_serie.get('stagioni')?.dirty || form_serie.get('stagioni')?.touched)">
+                    (form_serie.get('stagioni')?.touched)">
                 </div>
+                <span *ngIf="form_serie.get('stagioni')?.hasError('required') && (form_serie.get('stagioni')?.touched)"
+                    class="is-invalid">Formato numerico
+                </span>
             </div>
 
 
             <div class="row g-2 mb-3 p-3 mx-1"><!-- ANNO DI INIZIO, ANNO DI FINE(SE ESISTE) E VOTO-->
                 <div class="col col-lg-4"><!-- #####  ANNO  ########-->
-                    <label class="form-label" for="anno_inizio"
-                        [class.is-invalid]="form_serie.get('anno_inizio')?.invalid &&
-                    (form_serie.get('anno_inizio')?.dirty || form_serie.get('anno_inizio')?.touched)">Anno_inizio</label>
+                    <label class="form-label" for="anno_inizio" [class.is-invalid]="form_serie.get('anno_inizio')?.invalid &&
+                    (form_serie.get('anno_inizio')?.touched)">Anno_inizio</label>
                     <input class="form-control" type="text" formControlName="anno_inizio" id="anno_inizio"
                         [class.is-invalid]="form_serie.get('anno_inizio')?.invalid &&
-                    (form_serie.get('anno_inizio')?.dirty || form_serie.get('anno_inizio')?.touched)">
+                    (form_serie.get('anno_inizio')?.touched)">
                 </div>
                 <div class="col col-lg-4"><!-- #####  anno_fine  ########-->
                     <label class="form-label" for="anno_fine" [class.is-invalid]="form_serie.get('anno_fine')?.invalid &&
-                    (form_serie.get('anno_fine')?.dirty || form_serie.get('anno_fine')?.touched)">anno_fine</label>
+                    (form_serie.get('anno_fine')?.touched)">anno_fine</label>
                     <input class="form-control" type="text" formControlName="anno_fine" id="anno_fine"
                         [class.is-invalid]="form_serie.get('anno_fine')?.invalid &&
-                    (form_serie.get('anno_fine')?.dirty || form_serie.get('anno_fine')?.touched)">
+                    (form_serie.get('anno_fine')?.touched)">
                 </div>
                 <div class="col col-lg-4"><!-- #####  VOTO  ########-->
                     <label class="form-label" for="voto" [class.is-invalid]="form_serie.get('voto')?.invalid &&
-                    (form_serie.get('voto')?.dirty || form_serie.get('voto')?.touched)">Voto</label>
+                    (form_serie.get('voto')?.touched)">Voto</label>
                     <input class="form-control" type="text" formControlName="voto" id="voto" [class.is-invalid]="form_serie.get('voto')?.invalid &&
-                    (form_serie.get('voto')?.dirty || form_serie.get('voto')?.touched)">
+                    (form_serie.get('voto')?.touched)">
                 </div>
             </div>
 
             <div class="row g-2 mb-3 p-3 mx-1 "><!--####  TEXT AREA PER LA TRAMA -->
                 <div class="col"><!-- #####  TRAMA  ########-->
                     <label class="form-label" for="trama" [class.is-invalid]="form_serie.get('trama')?.invalid &&
-                    (form_serie.get('trama')?.dirty || form_serie.get('trama')?.touched)">Incipit</label>
+                    (form_serie.get('trama')?.touched)">Incipit</label>
                     <textarea class="form-control" type="text" formControlName="trama" id="trama" rows="3"
                         role="textbox" [class.is-invalid]="form_serie.get('trama')?.invalid &&
-                    (form_serie.get('trama')?.dirty || form_serie.get('trama')?.touched)">
+                    (form_serie.get('trama')?.touched)">
                     </textarea>
+                    <span *ngIf="form_serie.get('trama')?.hasError('required') && (form_serie.get('trama')?.touched)"
+                        class="is-invalid">Inserisci una trama valida / max 500 caratteri
+                    </span>
                 </div>
             </div>
 
             <div class="row g-2 mb-3 p-3 mx-1"><!--####  IMG  ##########-->
                 <div class="col"><!-- #####  IMG  ########-->
                     <label class="form-label" for="img" [class.is-invalid]="form_serie.get('img')?.invalid &&
-                    (form_serie.get('img')?.dirty || form_serie.get('img')?.touched)">Locandina</label>
+                    (form_serie.get('img')?.touched)">Locandina</label>
                     <input class="form-control" type="file" formControlName="img" id="locandina" [class.is-invalid]="form_serie.get('img')?.invalid &&
-                    (form_serie.get('img')?.dirty || form_serie.get('img')?.touched)" (change)="postImg($event)">
-                    <!-- In caso di modifica l'input file per la locandina è disabilitato-->
+                    (form_serie.get('img')?.touched)" (change)="postImg($event)">
+                    
                 </div>
             </div>
             <div class="btn-container">
@@ -258,7 +269,7 @@
                         <td>{{ep.titolo}}</td>
                         <td>{{ep.stagione}}</td>
                         <td>{{ep.numero}}</td>
-                        <td  class="locandina_ep"><img [src]="ep.path_img" [alt]="ep.titolo" class="img_loc" ></td>
+                        <td class="locandina_ep"><img [src]="ep.path_img" [alt]="ep.titolo" class="img_loc"></td>
                         <td scope="row">
                             <button class="elimina button_gest" (click)="open(eliminazione)">Elimina <i
                                     class="bi bi-trash3-fill"></i></button>
@@ -284,39 +295,39 @@
             <div class="row g-2 mb-3 p-3 mx-1"><!--#### TITOLO ##########-->
                 <div class="col"><!-- #####  TITOLO  ########-->
                     <label class="form-label" for="titolo" [class.is-invalid]="form_ep.get('titolo')?.invalid &&
-                    (form_ep.get('titolo')?.dirty || form_ep.get('titolo')?.touched)">titolo</label>
+                    (form_ep.get('titolo')?.touched)">titolo</label>
                     <input class="form-control" type="text" formControlName="titolo" id="titolo" [class.is-invalid]="form_ep.get('titolo')?.invalid &&
-                    (form_ep.get('titolo')?.dirty || form_ep.get('titolo')?.touched)">
+                    (form_ep.get('titolo')?.touched)">
                 </div>
             </div>
 
             <div class="row g-2 mb-3 p-3 mx-1"><!--#### TITOLO ##########-->
                 <div class="col"><!-- #####  TITOLO  ########-->
                     <label class="form-label" for="numero" [class.is-invalid]="form_ep.get('numero')?.invalid &&
-                    (form_ep.get('numero')?.dirty || form_ep.get('numero')?.touched)">Numero</label>
+                    (form_ep.get('numero')?.touched)">Numero</label>
                     <input class="form-control" type="text" formControlName="numero" id="numero" [class.is-invalid]="form_ep.get('numero')?.invalid &&
-                    (form_ep.get('numero')?.dirty || form_ep.get('numero')?.touched)">
+                    (form_ep.get('numero')?.touched)">
                 </div>
             </div>
 
             <div class="row g-2 mb-3 p-3 mx-1"><!-- NUMERO, DURATA E STAGIONE-->
                 <div class="col col-md-4"><!-- #####  STAGIONE  ########-->
                     <label class="form-label" for="stagione" [class.is-invalid]="form_ep.get('stagione')?.invalid &&
-                    (form_ep.get('stagione')?.dirty || form_ep.get('stagione')?.touched)">stagione</label>
+                    ( form_ep.get('stagione')?.touched)">stagione</label>
                     <input class="form-control" type="text" formControlName="stagione" id="stagione" [class.is-invalid]="form_ep.get('stagione')?.invalid &&
-                    (form_ep.get('stagione')?.dirty || form_ep.get('stagione')?.touched)">
+                    ( form_ep.get('stagione')?.touched)">
                 </div>
                 <div class="col col-md-4"><!-- #####  NUMERO EPISODIO  ########-->
                     <label class="form-label" for="voto" [class.is-invalid]="form_ep.get('voto')?.invalid &&
-                    (form_ep.get('voto')?.dirty || form_ep.get('voto')?.touched)">Voto</label>
+                    ( form_ep.get('voto')?.touched)">Voto</label>
                     <input class="form-control" type="text" formControlName="voto" id="voto" [class.is-invalid]="form_ep.get('voto')?.invalid &&
-                    (form_ep.get('voto')?.dirty || form_ep.get('voto')?.touched)">
+                    ( form_ep.get('voto')?.touched)">
                 </div>
                 <div class="col col-md-4"><!-- #####  DURATA  ########-->
                     <label class="form-label" for="durata" [class.is-invalid]="form_ep.get('durata')?.invalid &&
-                    (form_ep.get('durata')?.dirty || form_ep.get('durata')?.touched)">Durata</label>
+                    ( form_ep.get('durata')?.touched)">Durata</label>
                     <input class="form-control" type="text" formControlName="durata" id="durata" [class.is-invalid]="form_ep.get('durata')?.invalid &&
-                    (form_ep.get('durata')?.dirty || form_ep.get('durata')?.touched)">
+                    ( form_ep.get('durata')?.touched)">
                 </div>
             </div>
 
@@ -325,10 +336,10 @@
             <div class="row g-2 mb-3 p-3 mx-1 "><!--####  TEXT AREA PER LA TRAMA -->
                 <div class="col"><!-- #####  TRAMA  ########-->
                     <label class="form-label" for="trama" [class.is-invalid]="form_serie.get('trama')?.invalid &&
-                    (form_serie.get('trama')?.dirty || form_serie.get('trama')?.touched)">Incipit</label>
+                    (form_serie.get('trama')?.touched)">Incipit</label>
                     <textarea class="form-control" type="text" formControlName="trama" id="trama" rows="3"
                         role="textbox" [class.is-invalid]="form_serie.get('trama')?.invalid &&
-                    (form_serie.get('trama')?.dirty || form_serie.get('trama')?.touched)">
+                    (form_serie.get('trama')?.touched)">
                     </textarea>
                 </div>
             </div>
@@ -336,19 +347,19 @@
             <div class="row g-2 mb-3 p-3 mx-1"><!--####  IMG  ##########-->
                 <div class="col"><!-- #####  IMG  ########-->
                     <label class="form-label" for="img" [class.is-invalid]="form_ep.get('img')?.invalid &&
-                    (form_ep.get('img')?.dirty || form_ep.get('img')?.touched)">Locandina</label>
+                    (form_ep.get('img')?.touched)">Locandina</label>
                     <input class="form-control" type="file" formControlName="img" id="locandina" [class.is-invalid]="form_ep.get('img')?.invalid &&
-                    (form_ep.get('img')?.dirty || form_ep.get('img')?.touched)" (change)="postImg($event)">
+                    (form_ep.get('img')?.touched)" (change)="postImg($event)">
                     <!-- In caso di modifica l'input file per la locandina è disabilitato-->
                 </div>
             </div>
             <div class="row g-2 mb-3 p-3 mx-1"><!--####  VIDEO  ##########-->
                 <div class="col"><!-- #####  VIDEO  ########-->
                     <label class="form-label" for="video" [class.is-invalid]="form_serie.get('video')?.invalid &&
-                    (form_serie.get('video')?.dirty || form_serie.get('video')?.touched)">Video</label>
+                    ( form_serie.get('video')?.touched)">Video</label>
                     <input class="form-control" type="file" formControlName="video" accept="video" id="locandina"
                         [class.is-invalid]="form_serie.get('video')?.invalid &&
-                    (form_serie.get('video')?.dirty || form_serie.get('video')?.touched)" (change)="postVideo($event)">
+                    ( form_serie.get('video')?.touched)" (change)="postVideo($event)">
                 </div>
             </div>
 

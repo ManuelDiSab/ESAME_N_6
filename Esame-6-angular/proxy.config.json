@@ -1,7 +1,6 @@
 {
     "/api":{
-        "_target":"http://localhost/SecondoProgetto/public/api",
-        "target":"http://localhost/ESAMI/ESAME%20SESSIONE%206%20ACCADEMIA%20CODE%20DI%20SABATINO%20MANUEL/esame_6_CODE/public/api",
+        "target":"http://localhost/ESAME_N_6/esame-6-laravel/public/api",
         "secure":"false",
         "changeOrigin":"true",
         "pathRewrite":{

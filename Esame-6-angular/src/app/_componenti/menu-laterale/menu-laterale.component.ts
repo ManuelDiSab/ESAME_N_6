@@ -107,6 +107,7 @@ export class MenuLateraleComponent implements OnInit {
     }
     onSubmit(): void {
         this.router.navigateByUrl('ricerca/' + this.valore_ricerca)
+        this.valore_ricerca = ''
     }
 
     /**

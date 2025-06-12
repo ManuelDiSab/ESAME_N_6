@@ -10,21 +10,21 @@
             </section>
             <section class="text-white p-2"><!-- dettagli film-->
                 <ul class="list-inline">
-                    <li class="list-inline-item pe-1">{{risorsa?.voto}} <i class="bi bi-star-fill" style="color: yellow;"></i></li>
+                    <li class="list-inline-item pe-1">{{risorsa?.voto}} <i class="bi bi-star-fill"
+                            style="color: yellow;"></i></li>
                     <li class="list-inline-item pe-1">{{risorsa?.anno}} - {{risorsa?.anno_fine}} </li>
-                    <li class="list-inline-item pe-1"><a href="#" class="text-white-50 text-decoration-underline">{{risorsa?.genere}}</a></li>
+                    <li class="list-inline-item pe-1"><a href="#"
+                            class="text-white-50 text-decoration-underline">{{risorsa?.genere}}</a></li>
                     <li class="list-inline-item pe-1"><i class="bi bi-badge-hd"></i></li>
                 </ul>
             </section>
             <section class="btn-group p-md-2 d-flex"><!-- Bottoni grandi-->
-                <button class="" id="play" (click)="open(content)">Primo episodio<i
+                <button class="" id="play" (click)="open(content);setVideo(episodi_arr[0].path_video)">Primo episodio<i
                         class="bi bi-play-fill"></i></button>
-                <button class="utility" data-toggle="tooltip" data-placement="top"
-                    title="Add to list">
-                    <i class="bi bi-bookmark" ></i>
-                </button>
-                <button class="utility" data-toggle="tooltip" data-placement="top"
-                    title="Guarda il trailer">
+                <button (click)="preferiti(risorsa)" class="utility rounded-circle"><i
+                        [class.bi-bookmark-fill]="risorsa?.preferito" class="bi"
+                        [class.bi-bookmark]="!risorsa?.preferito"></i></button>
+                <button class="utility" data-toggle="tooltip" data-placement="top" title="Guarda il trailer">
                     <i class="bi bi-film"></i>
                 </button>
             </section>
@@ -37,6 +37,7 @@
     <div class="sopra">
         <i class="bi bi-x-lg chiudi" (click)="modal.close()"></i>
     </div>
-</ng-template>  
+</ng-template>
 
-<nav-tab [elementi_serie]="arr_serie" [serie]="risorsa!" [FilmOSerie]="false" [episodi]="episodi_arr" [n_stagioni]="n_stagioni"></nav-tab>
+<nav-tab [elementi_serie]="arr_serie" [serie]="risorsa!" [FilmOSerie]="false" [episodi]="episodi_arr"
+    [n_stagioni]="n_stagioni"></nav-tab>

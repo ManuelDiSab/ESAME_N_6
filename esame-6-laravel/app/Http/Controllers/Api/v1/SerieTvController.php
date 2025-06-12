@@ -94,8 +94,9 @@ class serieTvController extends Controller
                 $path = $request->file('path')->storeAs('img/',$filename,'public');
                 $data['path'] = $filename;
                 $resource = SerieTV::create($data);
-                $new =  new SerieTvResource($resource);
-                return response()->json(["nuova risorsa"=> $new],201);
+                $tutte = serieTv::get()->take(10);
+                $new =  new SerieTvCollection($tutte);
+                return $new;
             }
         }
     }
@@ -113,7 +114,7 @@ class serieTvController extends Controller
                 $data = $request->validated();
                 $serie -> fill($data);
                 $serie->save();
-                return new SerieTvResource($serie); 
+                return new SerieTvResource(($serie));
             }
         }
     }
@@ -151,7 +152,8 @@ class serieTvController extends Controller
             if(Gate::allows('admin')){
                 $serie = serieTv::findOrFail($idSerie);
                 $serie->delete();
-                return response()->json(['message'=>'serie eliminata con successo'],204);
+                $serieTot = serieTv::get()->take(10);
+                return new SerieTvCollection($serieTot);
             }
         }
     }

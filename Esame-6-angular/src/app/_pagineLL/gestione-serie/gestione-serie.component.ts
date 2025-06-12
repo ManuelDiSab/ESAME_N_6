@@ -152,7 +152,7 @@ export class GestioneSerieComponent implements OnInit, OnDestroy {
             take(1),
             map(x => x),
             takeUntil(this.distruggi$)
-        ).subscribe(this.oss.osservatoreGestione('DELETE', null))
+        ).subscribe(this.oss.osservatoreGestione('DELETE', this.arr_serie))
         this.serieSelezionata = null
     }
     /**
@@ -187,7 +187,7 @@ export class GestioneSerieComponent implements OnInit, OnDestroy {
             n_stagioni: this.form_serie.get('stagioni')?.value,
             anno: this.form_serie.get('anno_inizio')?.value,
             anno_fine: this.form_serie.get('anno_fine')?.value,
-            idGenere: this.form_serie.get('genere')?.value,
+            idGenere: this.form_serie.get('genere')?.value.idGenere,
             durata: this.form_serie.get('durata')?.value,
             voto: this.form_serie.get('voto')?.value,
             trama: this.form_serie.get('trama')?.value,

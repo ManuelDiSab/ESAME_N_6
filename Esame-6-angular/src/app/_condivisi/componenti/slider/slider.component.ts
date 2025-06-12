@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { IFilm } from 'src/app/interfaces/IFilm.interface';
 import { ISerie } from 'src/app/interfaces/ISerie.interface';
 import { I_rispostaserver } from 'src/app/interfaces/IRirspostaServer.interface';
@@ -13,7 +13,7 @@ import { UtilityService } from 'src/app/_servizi/utility.service';
     styleUrls: ['./slider.component.scss'],
 })
 
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnDestroy{
     @Input('elementi') film!: (IFilm | ISerie)[]
     @Input('titolo') titolo!: string
     @Input('icona') icona: string | null = null
@@ -37,6 +37,9 @@ export class SliderComponent implements OnInit {
                 // this.percPress.emit(0)
             })
         )
+    }
+    ngOnDestroy(): void {
+        this.stato$.next('Uscito')
     }
     ngOnInit(): void {
         this.responsiveOptions = [

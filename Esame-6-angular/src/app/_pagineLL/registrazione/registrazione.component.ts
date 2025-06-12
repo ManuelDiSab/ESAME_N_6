@@ -114,7 +114,7 @@ export class RegistrazioneComponent implements OnInit, OnDestroy {
             this.reactiveForm3.get('cap')?.setValue(this.comune_selected2?.cap)
             let inizio = parseInt(this.comune_selected2.capInizio!)
             let fine = parseInt(this.comune_selected2.capFine!)
-            this.arr_cap = this.utility.creaRange       (inizio, fine)
+            this.arr_cap = this.utility.creaRange(inizio, fine)
         }else{  
             
             subComune2.next(this.comune_selected2?.cap)
@@ -230,7 +230,7 @@ export class RegistrazioneComponent implements OnInit, OnDestroy {
             const comune_residenza: string = this.reactiveForm3.controls['comune'].value.idComune.toString()
             const tipo_ind: string = this.reactiveForm3.controls['tipologiaIndirizzo'].value.toString()
             const password = UtilityService.hash(this.reactiveForm3.controls['password'].value)
-
+            console.log(utente, nome, cognome, dataNascita, sesso, comuneNascita,provincia,codiceFisc,nazione,n_telefono,cap, indirizzo,civico,comune_residenza, tipo_ind, password )
             //Li inserisco in un oggetto di tipo IRegistrazione (vedi le interface)
             let fd = new FormData()
             fd.append('utente', utente)

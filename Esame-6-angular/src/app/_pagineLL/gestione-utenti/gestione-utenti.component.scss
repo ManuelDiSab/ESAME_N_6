@@ -23,6 +23,11 @@
             // border-radius: 15px;
         }
     }
+    @media (max-width:600px){
+        .interno_btn{
+            display: block;
+        }
+    }
     // th{
     //     color: #fff;
     // }
