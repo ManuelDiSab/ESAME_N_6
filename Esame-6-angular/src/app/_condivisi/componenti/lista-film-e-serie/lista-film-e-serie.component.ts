@@ -14,7 +14,7 @@ export class ListaFilmESerieComponent implements OnInit {
     @Input('elementi') elementi!: (IFilm | ISerie)[]
     stato$: Subject<string> = new Subject()
     cancellato$: Observable<string>
-    tMax: number = 1000
+    tMax: number = 700
     constructor() {
         this.cancellato$ = this.stato$.pipe(
             filter(x => x === 'Uscito'),
@@ -27,8 +27,10 @@ export class ListaFilmESerieComponent implements OnInit {
     ngOnInit(): void {
 
     }
-    alMouseLeave(el: HTMLDivElement, img: HTMLImageElement) {
+    alMouseLeave(el: HTMLDivElement,  movie: ISerie | IFilm) {
         let width = window.innerWidth
+        let img = document.getElementById(movie.titolo)
+
         if (width >= 1025) {
             console.log(width)
             console.log('esco dal bottone')
@@ -40,8 +42,9 @@ export class ListaFilmESerieComponent implements OnInit {
 
     }
 
-    alMOuseEnter(el: HTMLDivElement, img: HTMLImageElement) {
+    alMOuseEnter(el: HTMLDivElement, movie: ISerie | IFilm) {
         let width = window.innerWidth
+        let img = document.getElementById(movie.titolo)
         if (width >= 1025) {
             console.log('%c Sono entrato con il cursore', 'color:magenta; font-weight:bold;')
             this.stato$.next('Entro con il mouse')

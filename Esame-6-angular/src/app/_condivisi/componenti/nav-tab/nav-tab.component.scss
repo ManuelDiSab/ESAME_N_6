@@ -73,7 +73,7 @@ section {
         position: relative;
 
         .img_ep {
-            width: 28vw;
+            width: 35vw;
             height: 250px;
             border-radius: 10px;
             cursor: pointer;
@@ -125,7 +125,7 @@ section {
 
         .trama {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 20px;
+            font-size: 1rem;
         }
     }
 }
@@ -203,6 +203,17 @@ section {
                     display: none;
                 }
             }
+        }
+    }
+}
+
+@media(max-width:425px){
+    button{
+        border: 0px !important;
+        background-color: transparent !important;
+        i{
+            color: #cbcbcb !important;
+            font-size: 7vw !important;
         }
     }
 }

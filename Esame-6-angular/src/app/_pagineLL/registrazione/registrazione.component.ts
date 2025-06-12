@@ -114,7 +114,7 @@ export class RegistrazioneComponent implements OnInit, OnDestroy {
             this.reactiveForm3.get('cap')?.setValue(this.comune_selected2?.cap)
             let inizio = parseInt(this.comune_selected2.capInizio!)
             let fine = parseInt(this.comune_selected2.capFine!)
-            this.arr_cap = this.utility.contaTraDueNumeri(inizio, fine)
+            this.arr_cap = this.utility.creaRange       (inizio, fine)
         }else{  
             
             subComune2.next(this.comune_selected2?.cap)

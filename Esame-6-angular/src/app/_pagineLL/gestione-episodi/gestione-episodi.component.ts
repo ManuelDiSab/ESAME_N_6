@@ -42,28 +42,6 @@ export class GestioneEpisodiComponent implements OnInit, OnDestroy {
         this.distruggi$.next()
     }
 
-
-
-     /**
-         * Funzione per fare la sottoscrizione ogni volta che premo il pulsante 
-         * episodi
-         * @return void
-         */
-        // setEpisodi(): void {
-        //     this.arr_episodi = []
-        //     this.n_stagioni = []
-        //     let episodi$: Observable<I_rispostaserver>//Creo l'observable
-        //     let id = this.serieSelezionata!.idSerie.toString()//Prendo l'id della serie selezionata
-        //     //e la trasformo in una stringa
-        //     episodi$ = this.api.getEpisodiSerie(id)
-        //     episodi$.subscribe(this.utility.osservatoreEpisodi(this.arr_episodi))
-        //     for (let i = 1; i <= this.serieSelezionata!.n_stagioni; i++) {
-        //         this.n_stagioni.push(i)
-        //     }
-        //     console.log('episodi', this.arr_episodi)
-        // }
-    
-
     /**
          * Funzione per selezionare il form popolato o il form vuoto 
          * @param string 

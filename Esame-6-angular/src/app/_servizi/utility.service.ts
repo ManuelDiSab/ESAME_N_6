@@ -132,15 +132,6 @@ export class UtilityService {
         return (size > tmp) ? false : true
     }
 
-    public contaTraDueNumeri(min: number, max: number): number[] {
-        let arr = []
-        for (let i = min; i < max; i++) {
-            arr.push(i)
-        }
-        return arr
-    }
-
-
     /**
      * Funzione per creare un array contente tutti i numeri tra il primo e il secondi numero passato alla funzione
      * @param inizio numero da cui iniziare
@@ -222,29 +213,6 @@ export class UtilityService {
             this.api.delSeriePrefe(item.idSerie).subscribe()
         }
     }
-
-    //###########   OSSERVATORI  ###################################################################################################################
-
-
-    // Osservatore per le chiamate POST e DELETE  
-    public osservatoreGestione(string: 'POST' | 'DELETE', arr: ISerie[] | IFilm[] | IEpisodio[] | null) {
-        return { //Osservatore basico per cancellare
-            next: (rit: I_rispostaserver) => { arr = rit.data },
-            error: (err: string) => { console.log(err), this.creaAlert(false, string) },
-            complete: () => { this.creaAlert(true, string) }
-        }
-    }
-
-
-    //Osservaore per gli update
-    public osservatoreGestUpdate(risorsa: IFilm | IEpisodio | ISerie | IGen) {
-        return {
-            next: (rit: IFilm | IEpisodio | ISerie | IGen) => { risorsa = rit },
-            error: (err: string) => { console.log(err), this.creaAlert(false, 'UPDATE') },
-            complete: () => { this.creaAlert(true, 'UPDATE') }
-        }
-    }
-
     
 }
 

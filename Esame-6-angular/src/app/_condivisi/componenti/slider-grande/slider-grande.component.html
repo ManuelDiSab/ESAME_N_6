@@ -2,7 +2,7 @@
 <ng-container>
     <section class="grande">
         <!-- Carosello grande primario in alto (INIZIO) -->
-        <ngb-carousel [interval]="0">
+        <ngb-carousel [interval]="0" >
             <!-- Intervallo di 10 secondi per ogni slide -->
             <ng-template ngbSlide *ngFor="let item of film; index as i">
                 <div id="principale"
@@ -25,10 +25,9 @@
                                         [routerLink]="'/film/'+ item.titolo">GUARDA<i class="bi bi-play-fill"></i></a>
                                     <a *ngIf="!item.film" class="button" href="javascript:void(0)"
                                         [routerLink]="'/serie/'+ item.idSerie">GUARDA<i class="bi bi-play-fill"></i></a>
-                                    <a *ngIf="item.preferito" class="button" (click)="TogliPreferito(item, i1)">PREFERITI<i
-                                            class="bi bi-bookmark-fill" #i1></i></a>
-                                    <a *ngIf="!item.preferito" class="button" (click)="preferiti(item, i2)">PREFERITI<i
-                                            class="bi bi-bookmark" #i2></i></a>
+                                    <button (click)="preferiti(item)" class="button"><i
+                                            [class.bi-bookmark-fill]="item?.preferito" class="bi"
+                                            [class.bi-bookmark]="!item?.preferito"></i></button>
 
                                 </div>
                             </div>

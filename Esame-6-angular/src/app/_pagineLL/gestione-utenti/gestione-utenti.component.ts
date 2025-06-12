@@ -4,6 +4,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, concat, filter, map, Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { ApiService } from 'src/app/_servizi/api.service';
 import { AuthService } from 'src/app/_servizi/auth.service';
+import { OsservatoriService } from 'src/app/_servizi/osservatori.service';
 import { UtilityService } from 'src/app/_servizi/utility.service';
 import { Auth } from 'src/app/interfaces/IAuth.interface';
 import { I_rispostaserver } from 'src/app/interfaces/IRirspostaServer.interface';
@@ -38,7 +39,7 @@ export class GestioneUtentiComponent implements OnInit {
         }
     ]
 
-    constructor(private api: ApiService, private fb:FormBuilder, private authService:AuthService, private utility:UtilityService) {
+    constructor(private api: ApiService, private fb:FormBuilder, private authService:AuthService, private oss:OsservatoriService) {
         this.auth = this.authService.LeggiObsAuth()//Leggo l'auth da localstorage se esiste (sono loggato)
         this.utenti$ = this.api.getListaUtenti()
         this.filter_form = this.fb.nonNullable.group({
@@ -107,7 +108,7 @@ export class GestioneUtentiComponent implements OnInit {
      * @return void
      */
     eliminaUtente(id:string):void{
-        this.api.deleteUserProfileAdmin(id).subscribe(this.utility.osservatoreGestione('DELETE',null))
+        this.api.deleteUserProfileAdmin(id).subscribe(this.oss.osservatoreGestione('DELETE',null))
         this.api.getListaUtenti().subscribe(this.osservatoreUtenti())
     }
 

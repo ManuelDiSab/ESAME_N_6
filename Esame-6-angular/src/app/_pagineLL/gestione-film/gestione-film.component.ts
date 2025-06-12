@@ -36,7 +36,8 @@ export class GestioneFilmComponent implements OnInit {
     private modalService = inject(NgbModal);
     closeResult: WritableSignal<string> = signal('');
 
-    constructor(private api: ApiService, private utility: UtilityService, private oss: OsservatoriService, private fb: FormBuilder, public activeModal: NgbActiveModal) {
+    constructor(private api: ApiService, private utility: UtilityService, private oss: OsservatoriService, private fb: FormBuilder,
+         public activeModal: NgbActiveModal) {
         this.film$ = this.api.getFilmTotali()
         this.generi$ = this.api.getGenere()
         this.form_select = this.fb.nonNullable.group({
@@ -175,7 +176,7 @@ export class GestioneFilmComponent implements OnInit {
         }
         this.api.postFilm(fd).pipe(
             take(1),
-            takeUntil(this.distruggi$)).subscribe(this.utility.osservatoreGestione('POST', this.arr_film))
+            takeUntil(this.distruggi$)).subscribe(this.oss.osservatoreGestione('POST', this.arr_film))
     }
 
     /**
@@ -214,7 +215,7 @@ export class GestioneFilmComponent implements OnInit {
             take(1),
             map(x => x),
             takeUntil(this.distruggi$)
-        ).subscribe(this.utility.osservatoreGestione('DELETE', null))
+        ).subscribe(this.oss.osservatoreGestione('DELETE', null))
         this.filmSelezionato = null
     }
 

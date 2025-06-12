@@ -13,8 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProvider } from './_servizi/jwt-interceptor.service';
 import { MenuLateraleComponent } from './_componenti/menu-laterale/menu-laterale.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { BtnGestioneDirective } from './direttive/btn-gestione.directive';
-import { FormSerieComponent } from './_componenti/form-serie/form-serie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -23,10 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     MenuAltoComponent,
     FooterComponent,
-    MenuLateraleComponent,
-    BtnGestioneDirective,
-    FormSerieComponent
-  ],
+    MenuLateraleComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

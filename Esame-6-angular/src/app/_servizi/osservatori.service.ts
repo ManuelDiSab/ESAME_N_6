@@ -5,14 +5,38 @@ import { INazione } from '../interfaces/INazione.interface';
 import { ISerie } from '../interfaces/ISerie.interface';
 import { IFilm } from '../interfaces/IFilm.interface';
 import { IEpisodio } from '../interfaces/IEpisodi.interface';
+import { UtilityService } from './utility.service';
+import { IGen } from '../interfaces/IGenere.interface';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OsservatoriService {
 
-    constructor() {
+    constructor(private utility:UtilityService) {
 
+    }
+
+
+    
+
+    // Osservatore per le chiamate POST e DELETE  
+    public osservatoreGestione(string: 'POST' | 'DELETE', arr: ISerie[] | IFilm[] | IEpisodio[] | null) {
+        return { //Osservatore basico per cancellare
+            next: (rit: I_rispostaserver) => { arr = rit.data },
+            error: (err: string) => { console.log(err), this.utility.creaAlert(false, string) },
+            complete: () => { this.utility.creaAlert(true, string) }
+        }
+    }
+
+
+    //Osservaore per gli update
+    public osservatoreGestUpdate(risorsa: IFilm | IEpisodio | ISerie | IGen) {
+        return {
+            next: (rit: IFilm | IEpisodio | ISerie | IGen) => { risorsa = rit },
+            error: (err: string) => { console.log(err), this.utility.creaAlert(false, 'UPDATE') },
+            complete: () => { this.utility.         creaAlert(true, 'UPDATE') }
+        }
     }
 
 

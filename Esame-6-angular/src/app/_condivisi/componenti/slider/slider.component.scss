@@ -35,30 +35,24 @@
         z-index: -1 !important;
         position: relative !important;
 
+        .schermo-piccolo{
+            display: none;
+        }
+
         .card {
             margin-right: 10px;
             background-color: #000;
             cursor: pointer;
             padding: 5px;
             text-decoration: none;
-
-            // height: 250px;
             img {
                 border-radius: 5px;
             }
 
             &:hover {
                 z-index: 1;
-
-                // img {
-                //    display:none;
-                // position: absolute;
-                // opacity: 0;
-                // }
-
                 .info {
                     z-index: 999999;
-                    // display: block;
                     border-radius: 5px;
                     border: 1px solid purple;
                     transition: .6s linear !important;
@@ -79,7 +73,7 @@
                     justify-content: center;
                     display: flex;
 
-                    button {
+                    button,a {
                         padding: 6px 12px;
                         border-radius: 5px;
                         background: purple;
@@ -107,12 +101,6 @@
                         width: 50%;
                         white-space: nowrap;
                     }
-
-                    // .trailer,
-                    // .preferiti {
-                    //     //Pulsanti per vedere il trailer e per rimuovere o aggiungere alla lista preferiti
-                    //     width: 15%;
-                    // }
                 }
 
                 .info_varie {
@@ -151,6 +139,12 @@
         height: auto;
 
         .cards {
+            .schermo-piccolo{
+                display: block;
+            }
+            .schermo-grande{
+                display: none;
+            }
             .card {
 
                 &:hover {

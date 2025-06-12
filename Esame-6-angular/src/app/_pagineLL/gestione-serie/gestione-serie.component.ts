@@ -152,7 +152,7 @@ export class GestioneSerieComponent implements OnInit, OnDestroy {
             take(1),
             map(x => x),
             takeUntil(this.distruggi$)
-        ).subscribe(this.utility.osservatoreGestione('DELETE', null))
+        ).subscribe(this.oss.osservatoreGestione('DELETE', null))
         this.serieSelezionata = null
     }
     /**
@@ -174,7 +174,7 @@ export class GestioneSerieComponent implements OnInit, OnDestroy {
             take(1),
             tap(x => console.log('OBS', x)),
             map(x => x.data),
-            takeUntil(this.distruggi$)).subscribe(this.utility.osservatoreGestione('POST', this.arr_serie))
+            takeUntil(this.distruggi$)).subscribe(this.oss.osservatoreGestione('POST', this.arr_serie))
     }
     /**
      * 
